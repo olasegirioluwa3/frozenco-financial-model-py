@@ -1,6 +1,8 @@
 ###
 ### BalanceSheet -> Assets
 ### This is a working class
+class BalanceSheet:
+    pass
 
 class Assets:
     def __init__(self, cash, accounts_receivable, inventory, other_current_assets, grossppe, accummulated_depreciation, other_assets, goodwill):
@@ -16,6 +18,7 @@ class Assets:
         self.netppe = []
         self.total_assets = []
 
+    #this is a comment
     def cal_total_current_assets(self):
         #iterate and return 
         if len(self.cash) == len(self.accounts_receivable) == len(self.inventory) == len(self.other_current_assets):

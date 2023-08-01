@@ -21,14 +21,21 @@ class IncomeStatement:
 
     def get_revenue(self):
         return self.revenue
-    
+
+
     def cal_revenue_growth_percent(self):
-        if len(self.total_current_assets) == 0:
+        if len(self.revenue) > 0:
             acc = 0
             i = 0
-            while(i < len(self.total_current_assets)):
-                acc = self.total_current_assets[i] + self.netppe[i] + self.other_assets[i] + self.goodwill[i]
-                self.total_assets.append(acc)
+            while(i < len(self.revenue)):
+                print(i)
+                if i == 0:
+                    self.revenue_growth_percent.append(acc)
+                else:
+                    current_revenue = self.revenue[i]
+                    last_revenue = self.revenue[i-1]
+                    acc = (current_revenue/last_revenue * 100) - 100
+                    self.revenue_growth_percent.append(round(acc, 2))
                 i += 1
 
 
@@ -44,4 +51,10 @@ depreciation = [5.0, 5.0, 5.0, 5.0, 5.0]
 amortization = [0.0, 0.0, 0.0, 0.0, 0.0]
 sga_expenses = [48.0, 51.0, 54.0, 57.0, 60.0]
 
+print('helo')
 incomestatement1 = IncomeStatement(revenue, cogs, gross_profit, depreciation, amortization, sga_expenses)
+
+print('helo2')
+incomestatement1.cal_revenue_growth_percent()
+print('helo3')
+print(incomestatement1.revenue_growth_percent)
