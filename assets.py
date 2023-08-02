@@ -1,4 +1,4 @@
-###
+### Author: Oluwafemi Olasegiri
 ### BalanceSheet -> Assets
 ### This is a working class
 class BalanceSheet:
