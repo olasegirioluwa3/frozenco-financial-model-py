@@ -19,6 +19,20 @@ class IncomeStatement:
         self.net_interest_expense = [] #
 
 
+    def get_total_year(self):
+        year = 2012 # initial year
+        acc = []
+        i = 0
+        while(i < len(self.revenue)):
+            if i == 0:
+                acc.append(year)
+            else:
+                acc.append(year)
+            year += 1
+            i += 1
+        return acc
+    
+
     def cal_revenue_growth_percent(self):
         if len(self.revenue) > 0:
             acc = 0
@@ -88,3 +102,10 @@ print("cogs %\ of revenue:")
 print(incomestatement1.cogs_percent_of_revenue)
 print("gross profit margin:")
 print(incomestatement1.gross_profit_margin)
+print(incomestatement1.get_total_year());
+import matplotlib.pyplot as plt
+plt.plot(revenue, incomestatement1.get_total_year())
+plt.xlabel('Revenue in Million Dollars')
+plt.ylabel('Fiscal Year')
+plt.title('FROZEN CO. FINANCIALS (REVENUE)')
+plt.show()
