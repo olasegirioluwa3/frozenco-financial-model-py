@@ -1,8 +1,6 @@
 ### Author: Oluwafemi Olasegiri
 ### BalanceSheet -> Assets
 ### This is a working class
-class BalanceSheet:
-    pass
 
 class Assets:
     def __init__(self, cash, accounts_receivable, inventory, other_current_assets, grossppe, accummulated_depreciation, other_assets, goodwill):
