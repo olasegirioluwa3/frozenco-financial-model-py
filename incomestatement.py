@@ -13,12 +13,15 @@ class IncomeStatement:
         self.amortization = [0.0, 0.0, 0.0, 0.0, 0.0]
         self.sga_expenses = [48.0, 51.0, 54.0, 57.0, 60.0]
         self.other_income_expense = [0.0, 0.0, 0.0, 0.0, 0.0]
-        self.revenue_growth_percent = self.cal_revenue_growth_percent() #working cal_revenue_growth_percent
-        self.cogs_percent_of_revenue = self.cal_cogs_percent_of_revenue() #working cal_cogs_percent_of_revenue
-        self.gross_profit_margin = self.cal_gross_profit_margin() #working cal_gross_profit_margin
-        self.interest_expense = [] #
-        self.interest_income = [] #
-        self.net_interest_expense = [] #
+        
+        self.revenue_growth_percent = self.cal_revenue_growth_percent()
+        self.cogs_percent_of_revenue = self.cal_cogs_percent_of_revenue()
+        self.gross_profit_margin = self.cal_gross_profit_margin()
+        
+        self.interest_expense = self.cal_interest_expense()  # Placeholder for interest expense calculation
+        self.interest_income = self.cal_interest_income()    # Placeholder for interest income calculation
+        self.net_interest_expense = self.cal_net_interest_expense()  # Placeholder for net interest expense calculation
+
 
 
     def get_revenue(self):
@@ -26,63 +29,32 @@ class IncomeStatement:
     
 
     def get_total_year(self):
-        year = 2012 # initial year
-        acc = []
-        i = 0
-        while i < len(self.revenue):
-            if i == 0:
-                acc.append(year)
-            else:
-                acc.append(year)
-            year += 1
-            i += 1
-        return acc
+        year = 2012
+        return [year + i for i in range(len(self.revenue))]
     
 
     def cal_revenue_growth_percent(self):
-        if len(self.revenue) > 0:
-            acc = 0
-            i = 0
-            acc_list = []
-            while(i < len(self.revenue)):
-                if i == 0:
-                    acc_list.append(0.0)
-                    pass
-                    #return acc
-                else:
-                    current_revenue = self.revenue[i]
-                    last_revenue = self.revenue[i-1]
-                    acc = (current_revenue/last_revenue * 100) - 100
-                    acc_list.append(round(acc, 1))
-                    #self.revenue_growth_percent.append(round(acc, 1))
-                i += 1
+        acc_list = [0.0] + [round((self.revenue[i] / self.revenue[i - 1] * 100) - 100, 1) for i in range(1, len(self.revenue))]
         return acc_list
+
 
 
     def cal_cogs_percent_of_revenue(self):
         if len(self.revenue) == len(self.cogs):
-            acc = 0
-            i = 0
-            acc_list = []
-            while(i < len(self.revenue)):
-                acc = self.cogs[i] / self.revenue[i] * 100
-                #self.cogs_percent_of_revenue.append(round(acc, 1))
-                acc_list.append(round(acc, 1))
-                i += 1
-        return acc_list
+            acc_list = [round(self.cogs[i] / self.revenue[i] * 100, 1) for i in range(len(self.revenue))]
+            return acc_list
+        else:
+            return []
+
 
 
     def cal_gross_profit_margin(self):
         if len(self.revenue) == len(self.gross_profit):
-            acc = 0
-            i = 0
-            acc_list = []
-            while(i < len(self.revenue)):
-                acc = self.gross_profit[i] / self.revenue[i] * 100
-                #self.gross_profit_margin.append(round(acc, 1))
-                acc_list.append(round(acc, 1))
-                i += 1
-        return acc_list
+            acc_list = [round(self.gross_profit[i] / self.revenue[i] * 100, 1) for i in range(len(self.revenue))]
+            return acc_list
+        else:
+            return []
+
 
 
     def cal_tax_rate(self):
@@ -190,8 +162,8 @@ class IncomeStatement:
         return []
     def tax_rate(self):
         return []
-    def net_income(self):
-        return []
+    def cal_net_income(self):
+        return [0.0, 0.0, 0.0, 0.0, 0.0]
     def net_margin_percent(self):
         return []
     def net_income_growth(self):
@@ -232,10 +204,21 @@ class BalanceSheet:
 
 class CashFlow:
     def __init__(self):
+        self.incomestatement1 = IncomeStatement()
         self.net_income = self.cal_net_income()
 
     def cal_net_income(self):
-        pass
+        acc = 0
+        i = 0
+        acc_list = []
+        while(i < len(IncomeStatement.cal_net_income)):
+            if i == 0:
+                acc = 5.0
+            else:
+                acc = IncomeStatement.cal_net_income()[i]
+            acc_list.append(acc)
+            i += 1
+        return acc_list
 
 class DebtIS:
     def __init__(self):
