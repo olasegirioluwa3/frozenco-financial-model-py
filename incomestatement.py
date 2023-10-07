@@ -36,8 +36,7 @@ class IncomeStatement:
     def cal_revenue_growth_percent(self):
         acc_list = [0.0] + [round((self.revenue[i] / self.revenue[i - 1] * 100) - 100, 1) for i in range(1, len(self.revenue))]
         return acc_list
-
-
+    
 
     def cal_cogs_percent_of_revenue(self):
         if len(self.revenue) == len(self.cogs):
@@ -211,13 +210,13 @@ class CashFlow:
         acc = 0
         i = 0
         acc_list = []
-        while(i < len(IncomeStatement.cal_net_income)):
+        """while(i < len(IncomeStatement.cal_cogs_percent_of_revenue())):
             if i == 0:
                 acc = 5.0
             else:
-                acc = IncomeStatement.cal_net_income()[i]
-            acc_list.append(acc)
-            i += 1
+                acc = IncomeStatement.cal_interest_income()[i]
+            acc_list.append(acc[i])
+            i += 1"""
         return acc_list
 
 class DebtIS:
@@ -318,7 +317,7 @@ class DebtIS:
 #print(incomestatement1.get_total_year());
 #print(incomestatement1.cogs_percent_of_revenue)
 #print("Revenue Presentation")
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #plt.plot(incomestatement1.get_total_year(), incomestatement1.revenue)
 #
 #plt.xlabel('Fiscal Year')
@@ -326,7 +325,7 @@ class DebtIS:
 #plt.title('FROZEN CO. FINANCIALS (REVENUE)')
 #plt.show()
 #
-#plt.plot(incomestatement1.get_total_year(), incomestatement1.revenue_growth_percent)
-#plt.xlabel('Fiscal Year')
-#plt.ylabel('Revenue growth in %')
-#plt.show()
+plt.plot(incomestatement1.get_total_year(), incomestatement1.revenue_growth_percent)
+plt.xlabel('Fiscal Year')
+plt.ylabel('Revenue growth in %')
+plt.show()
